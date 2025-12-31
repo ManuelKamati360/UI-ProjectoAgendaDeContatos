@@ -6,6 +6,7 @@
 @import url("./styles/style-body/painel-lateral-esquerdo.css"); /* Painel lateral esquerdo */
 @import url("./styles/style-body/painel-central.css");          /* Painel central */
 @import url("./styles/style-modalDialogs/modals.css");            /* Modais de diálogo */
+@import url("./styles/responsivity/responsivity-layout.css");              /* Media Querys para responsividade */
 
 .btn-voltar-para-agenda{
     position: absolute;

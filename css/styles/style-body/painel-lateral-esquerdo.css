@@ -47,12 +47,12 @@
     box-shadow: var(--sombra-padrao);
 
     font-family: var(--font-base-bold);
-    font-size: 55pt;
+    font-size: 45pt;
     font-weight: 540;
     color: var(--cor-branco);
 
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
 
     justify-self: center; /* Alinhamento horizontal em conteiners "grid"*/
     align-self: center;   /* Alinhamento vertical em conteiners "grid"*/

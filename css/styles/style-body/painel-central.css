@@ -7,7 +7,8 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* 4 colunas*/
     grid-template-rows: 1fr 1fr 1fr 1fr; /* 4 linhas*/
     gap: 9px 9px; /*espaçamento entre linhas e colunas */
-    
+    max-width: 1230px;
+    max-height: 2000px;
     overflow-y: auto; /*Rolagem de conteudo de um conteiner, na vertical...*/
     border-radius: var(--borda-arredondadas);
     scrollbar-gutter: stable both-edges; /*Afasta o scrollbar da borda do conteiner*/

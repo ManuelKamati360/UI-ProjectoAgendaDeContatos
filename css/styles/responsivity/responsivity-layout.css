@@ -1,0 +1,297 @@
+/* ==================== MOBILE: até 510px ==================== */
+@media screen and (max-width: 510px) {
+ /* Definição do Cabeçalho da página */
+#conteiner-cabecalho{
+    color: var(--cor-azul-escuro);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    /* Prender o menu acima de tudo */
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
+    z-index: 1000;
+}
+
+#conteiner-cabecalho h1{
+    margin-bottom: 0px;
+    font-size: 50px;
+    font-family: var(--font-base-bold);
+    text-transform: uppercase; /*esta prop. permite alter a capitalidade da fonte*/
+}
+ 
+  /* Painel lateral ainda presente, mas bem compacto */
+  #conteiner-principal {
+    grid-template-columns: 120px 1fr;
+  }
+  #conteiner-painel-lateral{
+      display: grid;
+      justify-content: center;
+      row-gap: 0px;
+      padding: 40px;
+      border-radius: var(--borda-arredondadas);
+  }
+  /* Cabeçalho em coluna, centralizado */
+  #conteiner-buscar-contatos {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    max-width: 90%;
+  }
+
+  #item-txt-caixa-de-busca,
+  #item-btn-buscar {
+    width: 100%;   /* barra e botão ocupam quase toda a largura */
+    height: 48px;
+    font-size: 13px;
+    margin-top: 5px;
+    font-size: 18px;
+  }
+
+  /* Painel central com apenas 1 coluna */
+  #conteiner-painel-central {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-left: 50px;
+    margin-top: 60px;
+    margin-bottom: 90px;
+    height: 435px;
+    width: 250px;
+  }
+
+  /* Cards reduzidos e centralizados */
+  .card-contato {
+    width: 95%;
+    max-width: 200px;
+    height: auto;
+    min-height: 180px;
+    font-size: 12px;
+  }
+  #btn-adicionar-contato{
+    background-color: var(--cor-verde-lima);
+    border: none;
+    border-radius: 50%;
+    box-shadow: var(--sombra-padrao);
+
+    font-family: var(--font-base-bold);
+    font-size: 35pt;
+    font-weight: 540;
+    color: var(--cor-branco);
+
+    width: 60px;
+    height: 60px;
+
+    justify-self: center; /* Alinhamento horizontal em conteiners "grid"*/
+    align-self: center;   /* Alinhamento vertical em conteiners "grid"*/
+    cursor: pointer; /* Muda o cursor ao passar por cima do botão */
+}
+
+
+}
+
+/* ==================== TABLET: 510px a 687px ==================== */
+@media screen and (max-width: 716px) and (min-width: 510px) {
+  /* Painel lateral ainda visível, mas mais compacto */
+  #conteiner-principal {
+    grid-template-columns: 140px 1fr;
+  }
+
+  /* Cabeçalho centralizado */
+  #conteiner-buscar-contatos {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    padding: 10px;
+  }
+
+  #item-txt-caixa-de-busca {
+    width: 65%;   /* reduzido para caber */
+    height: 48px;
+    font-size: 14px;
+  }
+
+  #item-btn-buscar {
+    width: 110px;
+    height: 48px;
+    font-size: 13px;
+  }
+
+  /* Painel central com 2 colunas */
+  #conteiner-painel-central {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 10px;
+    margin: 10px 2vw 0 2vw;
+  }
+
+  /* Cards reduzidos */
+  .card-contato {
+    width: 150px;
+    height: 185px;
+    font-size: 12px;
+  }
+}
+
+/* ==================== TABLET: 688px a 767px ==================== */
+@media screen and (max-width: 767px) and (min-width: 716px) {
+  /* Painel lateral ainda visível, mas compacto */
+  #conteiner-principal {
+    grid-template-columns: 150px 1fr;
+  }
+
+  /* Cabeçalho centralizado */
+  #conteiner-buscar-contatos {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 12px;
+  }
+
+  #item-txt-caixa-de-busca {
+    width: 70%;   /* reduzido para caber */
+    height: 50px;
+    font-size: 14px;
+  }
+
+  #item-btn-buscar {
+    width: 120px;
+    height: 50px;
+    font-size: 13px;
+  }
+
+  /* Painel central com 3 colunas */
+  #conteiner-painel-central {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 12px;
+    margin: 12px 2vw 0 2vw;
+  }
+
+  /* Cards reduzidos */
+  .card-contato {
+    width: 150px;
+    height: 190px;
+    font-size: 13px;
+  }
+}
+
+/* ==================== TABLET: 768px a 1000px ==================== */
+@media screen and (max-width: 1000px) and (min-width: 768px) {
+  /* Painel lateral ainda reduzido */
+  #conteiner-principal {
+    grid-template-columns: 170px 1fr;
+  }
+
+  /* Cabeçalho continua horizontal */
+  #conteiner-buscar-contatos {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 12px;
+  }
+
+  #item-txt-caixa-de-busca {
+    width: 420px;   /* reduzido para caber */
+    height: 50px;
+    font-size: 14px;
+  }
+
+  #item-btn-buscar {
+    width: 120px;   /* reduzido */
+    height: 50px;
+    font-size: 13px;
+  }
+
+  /* Painel central ajustado */
+  #conteiner-painel-central {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+    gap: 18px;
+    padding: 12px;
+    margin: 12px 2vw 0 2vw;
+  }
+
+  /* Cards reduzidos */
+  .card-contato {
+    width: 160px;   /* menor que o original */
+    height: 200px;
+    font-size: 13px;
+  }
+}
+
+/* ==================== TABLET: 768px a 1199px ==================== */
+@media screen and (min-width: 1001px) and (max-width: 1199px) {
+  /* Painel lateral levemente reduzido */
+  #conteiner-principal {
+    grid-template-columns: 180px 1fr;
+  }
+
+  /* Cabeçalho preserva posição, mas reduz tamanhos */
+  #item-txt-caixa-de-busca {
+    width: 500px;
+    height: 55px;
+    font-size: 15px;
+  }
+  #item-btn-buscar {
+    width: 140px;
+    height: 55px;
+    font-size: 14px;
+  }
+
+  /* Painel central com 4 colunas */
+  #conteiner-painel-central {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .card-contato {
+    width: 180px;
+    height: 210px;
+    font-size: 14px;
+  }
+}
+
+
+/* ==================== DESKTOP: 1200px ou mais ==================== */
+@media screen and (min-width: 1200px) {
+  /* Painel lateral no tamanho original */
+  #conteiner-principal {
+    grid-template-columns: 210px 1fr;
+  }
+
+  /* Cabeçalho no tamanho original */
+  #item-txt-caixa-de-busca {
+    width: 600px;
+    height: 55px;
+  }
+  #item-btn-buscar {
+    width: 150px;
+    height: 55px;
+  }
+
+  /* Painel central com colunas fixas e espaçamento maior */
+  #conteiner-painel-central {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 220px));
+    gap: 30px;
+  }
+
+  /* Cards no tamanho original */
+  .card-contato {
+    width: 220px;
+    height: 225px;
+    font-size: 15px;
+  }
+}
+
