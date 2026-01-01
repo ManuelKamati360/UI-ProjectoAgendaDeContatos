@@ -1,8 +1,22 @@
+// renderizarContatos.js
 
-// Função para rednderização dos cards de contatos...
+// 🔹 Variável local para armazenar contatos
+let listaContatos = [];
+
+// 🔹 Inicialização: carrega contatos da API e renderiza
+document.addEventListener("DOMContentLoaded", function () {
+  window.api.carregarContatos()
+    .then(data => {
+      listaContatos = data;
+      exibirCards();
+    })
+    .catch(error => console.error("Erro ao carregar contatos:", error));
+});
+
+// 🔹 Função para renderizar os cards
 function exibirCards() {
   const container = document.getElementById("conteiner-painel-central");
-  container.innerHTML = ""; // limpa antes de renderizar os cards...
+  container.innerHTML = ""; // limpa antes de renderizar
 
   listaContatos.forEach(contato => {
     // Criar elemento div do card
@@ -31,15 +45,29 @@ function exibirCards() {
 
     // Integração do "Botão Editar"
     card.querySelector(".btn-editar-contato").addEventListener("click", function () {
-        const id = this.getAttribute("data-id");
-        abrirModalEditar(id);
+      const id = this.getAttribute("data-id");
+      const contato = getContatoPorId(id);
+      if (contato && window.modalEditar) {
+        window.modalEditar.abrirModalEditar(contato);
+      }
     });
 
     // Integração do "Botão Deletar"
     card.querySelector(".btn-deletar-contato").addEventListener("click", function () {
-        const id = this.getAttribute("data-id");
-        abrirModalDeletar(id);
+      const id = this.getAttribute("data-id");
+      const contato = getContatoPorId(id);
+      if (contato && window.modalDeletar) {
+        window.modalDeletar.abrirModalDeletar(contato);
+      }
     });
-
   });
 }
+
+// 🔹 Getter para obter contato por ID
+function getContatoPorId(id) {
+  return listaContatos.find(c => c.id == id);
+}
+
+// Exporta para uso externo, se necessário
+window.getContatoPorId = getContatoPorId;
+// window.exibirCards = exibirCards;

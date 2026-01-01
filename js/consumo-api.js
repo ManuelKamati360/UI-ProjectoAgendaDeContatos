@@ -1,110 +1,59 @@
-// Variável global de acesso à lista de contatos
-let listaContatos = [];
+// consumo-api.js
 
-// Requisição GET para obter lista de contatos
-fetch("http://localhost:8080/AgendaDeContactos/api/contatos")
-  .then(response => response.json())
-  .then(data => {
-    listaContatos = data; // guarda os dados
-    exibirCards();   // chama função para renderizar
-  })
-  .catch(error => console.error("Erro:", error));
+// 🔹 Variável global para armazenar contatos
+let contatos = [];
 
-
-  
-// Função para rednderização dos cards de contatos...
-function exibirCards() {
-  const container = document.getElementById("conteiner-painel-central");
-  container.innerHTML = ""; // limpa antes de renderizar os cards...
-
-  listaContatos.forEach(contato => {
-    // Criar elemento div do card
-    const card = document.createElement("div");
-    card.classList.add("card-contato");
-
-    // Template interno do card
-    card.innerHTML = `
-      <a href="./pages/info-contato.html" class="card-contato-link" target="_self">
-          <div class="card-contato-logo">
-              <label>${contato.nome.charAt(0)}</label>
-          </div>                    
-          <div class="card-contato-info">
-              <p><b>Nome:</b> <label>${contato.nome}</label></p>
-              <p><b>Tel:</b> <label>${contato.telefone}</label></p>
-          </div>
-      </a>
-      <div class="card-contato-acoes">
-            <button type="button" class="btn-editar-contato" data-id="${contato.id}"></button>
-            <button type="button" class="btn-deletar-contato" data-id="${contato.id}"></button>                      
-      </div> 
-    `;
-
-    // Adicionar card ao container
-    container.appendChild(card);
-
-    // Integração do "Botão Editar"
-    card.querySelector(".btn-editar-contato").addEventListener("click", function () {
-        const id = this.getAttribute("data-id");
-        abrirModalEditar(id);
+// 🔹 Função GET → carregar todos os contatos
+function carregarContatos() {
+  return fetch("http://localhost:8080/AgendaDeContactos/api/contatos")
+    .then(response => {
+      if (!response.ok) throw new Error("Erro ao carregar contatos.");
+      return response.json();
+    })
+    .then(data => {
+      contatos = data;
+      return contatos;
     });
+}
 
-    // Integração do "Botão Deletar"
-    card.querySelector(".btn-deletar-contato").addEventListener("click", function () {
-        const id = this.getAttribute("data-id");
-        abrirModalDeletar(id);
-    });
-
+// 🔹 Função PUT → atualizar contato
+function atualizarContato(id, dados) {
+  return fetch(`http://localhost:8080/AgendaDeContactos/api/contatos/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dados)
+  }).then(response => {
+    if (!response.ok) throw new Error("Erro ao atualizar contato.");
+    return response.json();
   });
 }
 
-
-// Função/getter para obter contato por ID
-window.getContatoPorId = function(id) {
-  return listaContatos.find(c => c.id == id);
-};
-
-
-// Requisição POST para adicionar contato
-
-// Requisição PUT para editar contato
-document.addEventListener("DOMContentLoaded", function () {
-  const btnSalvar = document.getElementById("id-btn-salvar-modalEditar");
-  if (!btnSalvar) {
-    console.warn("Botão 'Salvar' não encontrado.");
-    return;
-  }
-
-  btnSalvar.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    const dadosValidados = validarFormularioEditar();
-    if (!dadosValidados) return;
-
-    const idContato = document.getElementById("editar").getAttribute("data-id");
-
-    fetch(`http://localhost:8080/AgendaDeContactos/api/contatos/${idContato}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dadosValidados)
-    })
-    .then(response => {
-      if (!response.ok) throw new Error("Erro ao atualizar contato.");
-      return response.json();
-    })
-    .then(() => {
-      alert("Contato atualizado com sucesso!");
-      document.getElementById("editar").close();
-      location.reload();
-    })
-    .catch(error => {
-      console.error(error);
-      alert("Falha ao salvar as alterações.");
-    });
+// 🔹 Função POST → adicionar contato
+function adicionarContato(dados) {
+  return fetch("http://localhost:8080/AgendaDeContactos/api/contatos", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dados)
+  }).then(response => {
+    if (!response.ok) throw new Error("Erro ao adicionar contato.");
+    return response.json();
   });
-});
+}
 
+// 🔹 Função DELETE → remover contato
+function deletarContato(id) {
+  return fetch(`http://localhost:8080/AgendaDeContactos/api/contatos/${id}`, {
+    method: "DELETE"
+  }).then(response => {
+    if (!response.ok) throw new Error("Erro ao deletar contato.");
+    return response.json();
+  });
+}
 
-// Requisição DELETE para deletar contato
-
-
-// (Essas funções podem ser implementadas conforme necessário)
+// 🔹 Exporta funções para uso nos modais
+window.api = {
+  carregarContatos,
+  atualizarContato,
+  adicionarContato,
+  deletarContato
+};
