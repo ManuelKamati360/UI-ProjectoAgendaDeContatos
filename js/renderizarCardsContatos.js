@@ -61,6 +61,8 @@ function exibirCards() {
       }
     });
   });
+
+  window.utils.atualizarTotalCards();
 }
 
 // 🔹 Getter para obter contato por ID

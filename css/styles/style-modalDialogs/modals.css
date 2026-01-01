@@ -97,12 +97,12 @@ dialog::backdrop {
 #btn-salvar{
     background-color: var(--cor-amarelo-claro);
 }
-#btn-deletar{
+#id-btn-deletar-modalDeletar{
     background-color: var(--cor-vermelho-claro);
 }
 .btn-cancelar{
     background-color: var(--cor-vermelho-claro);
-}.modal#deletar .btn-cancelar{
+}#id-btn-cancelar-modalDeletar{
     background-color: var(--cor-azul-escuro);
 }
 
