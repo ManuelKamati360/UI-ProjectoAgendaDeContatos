@@ -7,18 +7,74 @@ let listaContatos = [];
 document.addEventListener("DOMContentLoaded", function () {
   window.api.carregarContatos()
     .then(data => {
-      listaContatos = data;
+      listaContatos = Array.isArray(data) ? data : [data]; // normaliza
       exibirCards();
     })
     .catch(error => console.error("Erro ao carregar contatos:", error));
+
+  // 🔹 Integração da barra de pesquisa
+  const form = document.getElementById("frm-buscar-contato");
+  const input = document.getElementById("item-txt-caixa-de-busca");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const termo = input.value.trim();
+  console.log("Termo digitado:", termo);
+
+  let url;
+
+  if (!termo) {
+    url = "http://localhost:8080/AgendaDeContactos/api/contatos/";
+  } else if (/^\d+$/.test(termo)) {
+    url = `http://localhost:8080/AgendaDeContactos/api/contatos/${termo}`;
+  } else {
+    url = `http://localhost:8080/AgendaDeContactos/api/contatos?search=${encodeURIComponent(termo)}`;
+  }
+
+  // Mostra spinner
+  document.getElementById("loading-spinner").style.display = "block";
+
+  console.log("URL final da requisição:", url);
+
+  fetch(url)
+    .then(response => {
+      if (response.status === 404) {
+        document.getElementById("conteiner-painel-central").innerHTML =
+          "<p>Nenhum contato encontrado.</p>";
+        return null;
+      }
+      if (!response.ok) throw new Error("Erro na pesquisa");
+      return response.json();
+    })
+    .then(data => {
+      if (!data) return;
+      listaContatos = Array.isArray(data) ? data : [data];
+      exibirCards();
+    })
+    .catch(error => console.error(error))
+    .finally(() => {
+      // Esconde spinner
+      document.getElementById("loading-spinner").style.display = "none";
+    });
 });
 
-// 🔹 Função para renderizar os cards
+});
+
+// 🔹 Função para renderizar os cards de todos os contatos...
 function exibirCards() {
   const container = document.getElementById("conteiner-painel-central");
   container.innerHTML = "";
 
-  listaContatos.forEach(contato => {
+  // Normaliza lista antes de iterar
+  const contatos = Array.isArray(listaContatos) ? listaContatos : [listaContatos];
+
+  if (!contatos || contatos.length === 0) {
+    container.innerHTML = "<p>Nenhum contato encontrado.</p>";
+    return;
+  }
+
+  contatos.forEach(contato => {
     const card = document.createElement("div");
     card.classList.add("card-contato");
 
@@ -65,7 +121,7 @@ function exibirCards() {
   window.utils.atualizarTotalCards();
 }
 
-// Fora da função exibirCards
+// 🔹 Função para abrir modal de informações ao clicar no link do card
 function abrirInfoPorLink(event) {
   event.preventDefault();
   const id = event.currentTarget.getAttribute("data-id");

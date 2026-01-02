@@ -35,7 +35,9 @@
 #id-modal-info .dados-contato label {
   font-weight: normal;
   font-size: 1rem;
+  padding: auto;
   display: block;
+  text-align: justify;
   margin: 0.2rem 0;
 }
 
