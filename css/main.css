@@ -7,6 +7,7 @@
 @import url("./styles/style-body/painel-central.css");          /* Painel central */
 @import url("./styles/style-modalDialogs/modals.css");            /* Modais de diálogo */
 @import url("./styles/responsivity/responsivity-layout.css");              /* Media Querys para responsividade */
+@import url("./styles/style-modalDialogs/modal-info.css");       /* Modal de informações do contato */
 
 .btn-voltar-para-agenda{
     position: absolute;
