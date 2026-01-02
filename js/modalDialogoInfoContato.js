@@ -43,7 +43,7 @@ function abrirModalInfoContato(contato) {
     document.getElementById("id-nome-info").innerHTML = `<b>Nome:</b> ${contato.nome}`;
     document.getElementById("id-telefone-info").innerHTML = `<b>Telefone:</b> ${contato.telefone}`;
     document.getElementById("id-email-info").innerHTML = `<b>Email:</b> ${contato.email}`;
-    document.getElementById("id-data-info").innerHTML = `<b>Aniversário:</b> ${contato.dataNascimento}`;
+    document.getElementById("id-data-info").innerHTML = `<b>Data de nascimento:</b> ${contato.dataNascimento}`;
     document.getElementById("id-endereco-info").innerHTML = `<b>Endereço:</b> ${contato.endereco}`;
     document.getElementById("id-cidade-info").innerHTML = `<b>Cidade:</b> ${contato.cidade}`;
     document.getElementById("id-estado-info").innerHTML = `<b>Estado:</b> ${contato.estado}`;
@@ -56,7 +56,7 @@ function abrirModalInfoContato(contato) {
         contato.telefone,
         contato.email,
         contato.dataNascimento,
-        `${contato.endereco},${contato.cidade},${contato.estado}`
+        `${contato.endereco}, ${contato.cidade}, ${contato.estado}`
     ].join(" | ");
 
     window.utils.gerarQRCode("id-qr-info", textoQR);
