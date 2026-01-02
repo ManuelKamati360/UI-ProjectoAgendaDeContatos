@@ -46,7 +46,7 @@ function deletarContato(id) {
     method: "DELETE"
   }).then(response => {
     if (!response.ok) throw new Error("Erro ao deletar contato.");
-    return response.json();
+    return response.text(); // evita erro se não houver corpo
   });
 }
 

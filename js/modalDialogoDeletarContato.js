@@ -1,5 +1,6 @@
 // modalDialogoDeletar.js
 
+// 🔹 1. Injeta o HTML do modal no DOM
 function criarModalDeletar() {
   const modalHTML = `
     <dialog class="modal" id="id-modal-deletar">
@@ -54,7 +55,33 @@ function criarModalDeletar() {
   document.body.insertAdjacentHTML("beforeend", modalHTML);
 }
 
-// Preencher modal com dados do contato
+// 🔹 2. Funções auxiliares para formatar data e telefone
+function formatarDataParaInput(dataString) {
+  const meses = { jan:"01", feb:"02", mar:"03", apr:"04", may:"05", jun:"06",
+                  jul:"07", aug:"08", sep:"09", oct:"10", nov:"11", dec:"12" };
+  const regex = /([a-z]{3})\.?\s+(\d{1,2}),\s+(\d{4})/i;
+  const match = dataString.match(regex);
+  if (match) {
+    const mes = meses[match[1].toLowerCase()];
+    const dia = match[2].padStart(2, "0");
+    const ano = match[3];
+    return `${ano}-${mes}-${dia}`;
+  }
+  return "";
+}
+
+function separarTelefoneCompleto(telefoneCompleto) {
+  const regex = /\((\+\d+)\)\s*([\d\- ]+)/;
+  const match = telefoneCompleto.match(regex);
+  if (match) {
+    const codigo = match[1];
+    const numero = match[2].replace(/[\s\-]/g, "");
+    return { codigo, numero };
+  }
+  return { codigo: "", numero: "" };
+}
+
+// 3. Preencher modal com dados do contato
 function abrirModalDeletar(contato) {
   const modal = document.getElementById("id-modal-deletar");
   if (!modal) return;
@@ -64,9 +91,11 @@ function abrirModalDeletar(contato) {
   document.getElementById("id-endereco-modalDeletar").value = contato.endereco || "";
   document.getElementById("id-cidade-modalDeletar").value = contato.cidade || "";
   document.getElementById("id-estado-modalDeletar").value = contato.estado || "";
-  document.getElementById("id-datanascimento-modalDeletar").value = contato.dataNascimento || "";
-  document.getElementById("id-pais-modalDeletar").value = contato.telefone?.match(/\(\+\d+\)/)?.[0] || "";
-  document.getElementById("id-telefone-modalDeletar").value = contato.telefone || "";
+  document.getElementById("id-datanascimento-modalDeletar").value = formatarDataParaInput(contato.dataNascimento || "");
+
+  const { codigo, numero } = separarTelefoneCompleto(contato.telefone || "");
+  document.getElementById("id-pais-modalDeletar").value = codigo;
+  document.getElementById("id-telefone-modalDeletar").value = numero;
 
   modal.setAttribute("data-id", contato.id);
   modal.showModal();
@@ -89,8 +118,8 @@ document.addEventListener("DOMContentLoaded", function () {
       window.api.deletarContato(idContato)
         .then(() => {
           alert("Contato deletado com sucesso!");
+          location.reload();  // atualiza a pagina... cards e contador
           document.getElementById("id-modal-deletar").close();
-          location.reload();
         })
         .catch(() => alert("Erro ao deletar contato."));
     }

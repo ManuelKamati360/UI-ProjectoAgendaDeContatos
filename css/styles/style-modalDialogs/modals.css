@@ -91,10 +91,10 @@ dialog::backdrop {
     border-radius: var(--borda-arredondadas);
     cursor: pointer;
 }
-#btn-adicionar{
+#id-btn-adicionar-modalAdicionar{
     background-color: var(--cor-verde);
 }
-#btn-salvar{
+#id-btn-salvar-modalEditar{
     background-color: var(--cor-amarelo-claro);
 }
 #id-btn-deletar-modalDeletar{

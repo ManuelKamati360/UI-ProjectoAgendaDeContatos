@@ -104,8 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
       window.api.adicionarContato(dadosValidados)
         .then(() => {
           alert("Contato adicionado com sucesso!");
+          location.reload();  // atualiza a pagina... cards e contador
           document.getElementById("id-modal-adicionar").close();
-          location.reload();
         })
         .catch(() => alert("Erro ao adicionar contato."));
     }

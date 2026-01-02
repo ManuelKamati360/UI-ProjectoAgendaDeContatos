@@ -70,6 +70,7 @@ function formatarDataParaInput(dataString) {
   return "";
 }
 
+
 function separarTelefoneCompleto(telefoneCompleto) {
   const regex = /\((\+\d+)\)\s*([\d\- ]+)/;
   const match = telefoneCompleto.match(regex);
@@ -148,8 +149,8 @@ document.addEventListener("DOMContentLoaded", function () {
       window.api.atualizarContato(idContato, dadosValidados)
         .then(() => {
           alert("Contato atualizado com sucesso!");
+          location.reload();  // atualiza a pagina... cards e contador
           document.getElementById("id-modal-editar").close();
-          location.reload();
         })
         .catch(() => alert("Erro ao atualizar contato."));
     }
