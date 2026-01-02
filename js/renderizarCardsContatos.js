@@ -16,50 +16,47 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("frm-buscar-contato");
   const input = document.getElementById("item-txt-caixa-de-busca");
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
+  // Evento de submit (quando clica em Buscar)
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    buscarContatos(input.value.trim());
+  });
 
-  const termo = input.value.trim();
-  console.log("Termo digitado:", termo);
+  // Evento de input (quando apaga ou altera manualmente o termo)
+  input.addEventListener("input", function () {
+    if (this.value.trim() === "") {
+      buscarContatos(""); // recarrega todos
+    }
+  });
+});
 
+// 🔹 Função centralizada de busca
+function buscarContatos(termo) {
   let url;
 
   if (!termo) {
     url = "http://localhost:8080/AgendaDeContactos/api/contatos/";
-  } else if (/^\d+$/.test(termo)) {
-    url = `http://localhost:8080/AgendaDeContactos/api/contatos/${termo}`;
   } else {
     url = `http://localhost:8080/AgendaDeContactos/api/contatos?search=${encodeURIComponent(termo)}`;
   }
 
-  // Mostra spinner
-  document.getElementById("loading-spinner").style.display = "block";
-
-  console.log("URL final da requisição:", url);
+  const container = document.getElementById("conteiner-painel-central");
+  container.innerHTML = "<p>Carregando...</p>";
 
   fetch(url)
     .then(response => {
-      if (response.status === 404) {
-        document.getElementById("conteiner-painel-central").innerHTML =
-          "<p>Nenhum contato encontrado.</p>";
-        return null;
-      }
       if (!response.ok) throw new Error("Erro na pesquisa");
       return response.json();
     })
     .then(data => {
-      if (!data) return;
       listaContatos = Array.isArray(data) ? data : [data];
       exibirCards();
     })
-    .catch(error => console.error(error))
-    .finally(() => {
-      // Esconde spinner
-      document.getElementById("loading-spinner").style.display = "none";
+    .catch(error => {
+      console.error("Erro ao buscar contatos:", error);
+      container.innerHTML = "<p style='color:red;'>Erro ao carregar contatos. Tente novamente.</p>";
     });
-});
-
-});
+}
 
 // 🔹 Função para renderizar os cards de todos os contatos...
 function exibirCards() {

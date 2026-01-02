@@ -36,8 +36,7 @@ window.utils.gerarQRCode = function (elementId, texto) {
   qr.addData(utf8Texto);
   qr.make();
 
-  // Renderiza como SVG (mais nítido e escalável)
+  // Renderiza como SVG (mais nítido e escalável que img)
 container.innerHTML = qr.createSvgTag(2, 2);
 };
-
 
