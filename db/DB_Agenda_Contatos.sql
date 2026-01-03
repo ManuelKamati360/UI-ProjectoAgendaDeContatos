@@ -27,3 +27,45 @@ DESCRIBE contato;
 
 DROP TABLE IF EXISTS Contato;
 
+
+-- -------------------- Listar Contatos -------------------------
+DELIMITER $$
+CREATE PROCEDURE sp_ListarContatos()
+BEGIN
+    SELECT 
+    id, 
+    nome, 
+    dataNascimento, 
+    telefone, 
+    email, 
+    endereco, 
+    estado, 
+    cidade 
+    FROM Contato;
+END $$
+DELIMITER ;
+CALL sp_ListarContatos();
+
+-- -------------------- Listar Contatos por busca -------------------------
+DELIMITER $$
+
+CREATE PROCEDURE sp_ListarContatos (
+    IN sp_Disciplina VARCHAR(100),
+    IN sp_Classe CHAR(3),
+    IN sp_Turma CHAR(1),
+    IN sp_Regime VARCHAR(20)
+)
+BEGIN
+    SELECT 
+    id, 
+    nome, 
+    dataNascimento, 
+    telefone, 
+    email, 
+    endereco, 
+    estado, 
+    cidade 
+    FROM Contato;
+END $$
+DELIMITER ;
+CALL sp_ListarContatos();

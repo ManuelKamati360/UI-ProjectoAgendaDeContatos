@@ -8,9 +8,58 @@ function atualizarTotalCards() {
 }
 
 // Função para exportar a lista de contatos em formato PDF...
-function exportarContatosParaPDF() {
-  // Implementação futura
-}
+exportarContatosParaPDF = function (contatos) {
+  if (!Array.isArray(contatos) || contatos.length === 0) {
+    alert("Nenhum contato disponível para exportar.");
+    return;
+  }
+
+  const jsPDF = window.jspdf.jsPDF;
+  const doc = new jsPDF();
+
+  // Definição do estilo para o título...
+  doc.setFont("times", "bold");
+  doc.setFontSize(20);
+  doc.setTextColor(28, 80, 125); // azul
+  doc.text("LISTA DE CONTATOS", 105, 20, { align: "center" });
+  doc.setLineWidth(2);
+  doc.line(15, 22, 195, 22);
+
+  // Definição dos dados que irão na tabela...
+  const dados = contatos
+  //  Ordena alfabeticamente pelo nome
+  .sort((a, b) => a.nome.localeCompare(b.nome))
+  //  Depois mapeia para o formato da tabela
+  .map(c => [
+    c.nome,
+    c.telefone,
+    c.email,
+    `${c.endereco}, ${c.cidade}, ${c.estado}`
+  ]);
+
+  // Definição da estrutura da tabela para o PDF...
+  doc.autoTable({
+    head: [["Nome", "Telefone", "Email", "Endereço"]],
+    body: dados,
+    startY: 30,
+    theme: "grid",
+    styles: { fontSize: 10, halign: "justify" },
+    headStyles: { fillColor: [28, 80, 125], textColor: 255 },
+    alternateRowStyles: { fillColor: [240, 240, 240] }
+  });
+
+  // Rodapé da tabela...
+  const data = new Date().toLocaleString();
+  doc.setFontSize(10);
+  doc.setTextColor(100);
+  doc.setLineWidth(2);
+  doc.line(15, 22, 195, 22);
+  doc.text(`Exportado em: ${data}`, 15, 285);
+
+  // Salva o PDF com nome padrão...
+  doc.save("agenda-de-contatos.pdf");
+};
+
 
 // Expondo as funções para outros scripts...
 window.utils = { 

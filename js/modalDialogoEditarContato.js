@@ -1,6 +1,6 @@
 // modalDialogoEditar.js
 
-// 🔹 1. Injeta o HTML do modal no DOM
+//  1. Injeta o HTML do modal no DOM
 function criarModalEditar() {
   const modalHTML = `
     <dialog class="modal" id="id-modal-editar">
@@ -55,7 +55,7 @@ function criarModalEditar() {
   document.body.insertAdjacentHTML("beforeend", modalHTML);
 }
 
-// 🔹 2. Funções auxiliares para formatar data e telefone
+//  2. Funções auxiliares para formatar data e telefone
 function formatarDataParaInput(dataString) {
   const meses = { jan:"01", feb:"02", mar:"03", apr:"04", may:"05", jun:"06",
                   jul:"07", aug:"08", sep:"09", oct:"10", nov:"11", dec:"12" };
@@ -82,7 +82,7 @@ function separarTelefoneCompleto(telefoneCompleto) {
   return { codigo: "", numero: "" };
 }
 
-// 🔹 3. Abrir e preencher o modal
+//  3. Abrir e preencher o modal
 function abrirModalEditar(contato) {
   const modal = document.getElementById("id-modal-editar");
   if (!modal) return;
@@ -102,7 +102,7 @@ function abrirModalEditar(contato) {
   modal.showModal();
 }
 
-// 🔹 4. Validar formulário
+//  4. Validar formulário
 function validarFormularioEditar() {
   const nome = document.getElementById("id-nome-modalEditar").value.trim();
   const pais = document.getElementById("id-pais-modalEditar").value;
@@ -129,7 +129,7 @@ function validarFormularioEditar() {
   return { nome, telefone: `(${pais}) ${telefone}`, email, dataNascimento, endereco, cidade, estado };
 }
 
-// 🔹 5. Inicializar modal (criar + listeners)
+//  5. Inicializar modal (criar + listeners)
 document.addEventListener("DOMContentLoaded", function () {
   criarModalEditar();
 
@@ -157,5 +157,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// 🔹 Exporta funções para uso externo
+//  Exporta funções para uso externo
 window.modalEditar = { abrirModalEditar };

@@ -1,9 +1,9 @@
 // renderizarContatos.js
 
-// 🔹 Variável local para armazenar contatos
+//  Variável local para armazenar contatos
 let listaContatos = [];
 
-// 🔹 Inicialização: carrega contatos da API e renderiza
+//  Inicialização: carrega contatos da API e renderiza
 document.addEventListener("DOMContentLoaded", function () {
   window.api.carregarContatos()
     .then(data => {
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Erro ao carregar contatos:", error));
 
-  // 🔹 Integração da barra de pesquisa
+  //  Integração da barra de pesquisa
   const form = document.getElementById("frm-buscar-contato");
   const input = document.getElementById("item-txt-caixa-de-busca");
 
@@ -30,7 +30,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// 🔹 Função centralizada de busca
+// Exporta a lista de contatos para pdf
+document.addEventListener("DOMContentLoaded", function () {
+  const btnExportar = document.getElementById("btn-exportar");
+  if (btnExportar) {
+    btnExportar.addEventListener("click", function () {
+      window.utils.exportarContatosParaPDF(listaContatos);
+    });
+  }
+});
+
+//  Função centralizada de busca
 function buscarContatos(termo) {
   let url;
 
@@ -41,7 +51,7 @@ function buscarContatos(termo) {
   }
 
   const container = document.getElementById("conteiner-painel-central");
-  container.innerHTML = "<p>Carregando...</p>";
+  container.innerHTML = "<p id='msg-carregando'>Carregando...</p>";
 
   fetch(url)
     .then(response => {
@@ -54,11 +64,11 @@ function buscarContatos(termo) {
     })
     .catch(error => {
       console.error("Erro ao buscar contatos:", error);
-      container.innerHTML = "<p style='color:red;'>Erro ao carregar contatos. Tente novamente.</p>";
+      container.innerHTML = "<p style='color:red;' id='msg-contato-inexistente'>Contato(s) não encontrado(s)!<br>Tente novamente...";
     });
 }
 
-// 🔹 Função para renderizar os cards de todos os contatos...
+//  Função para renderizar os cards de todos os contatos...
 function exibirCards() {
   const container = document.getElementById("conteiner-painel-central");
   container.innerHTML = "";
@@ -118,7 +128,7 @@ function exibirCards() {
   window.utils.atualizarTotalCards();
 }
 
-// 🔹 Função para abrir modal de informações ao clicar no link do card
+//  Função para abrir modal de informações ao clicar no link do card
 function abrirInfoPorLink(event) {
   event.preventDefault();
   const id = event.currentTarget.getAttribute("data-id");
@@ -130,7 +140,7 @@ function abrirInfoPorLink(event) {
   }
 }
 
-// 🔹 Getter para obter contato por ID
+//  Getter para obter contato por ID
 function getContatoPorId(id) {
   return listaContatos.find(c => c.id == id);
 }

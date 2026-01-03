@@ -14,15 +14,20 @@
     /* background-color: var(--cor-azul-translucido); */
     border-radius: var(--borda-arredondadas);
     display: grid;
+    justify-content: center;
+    align-items: center;
     grid-template-columns: auto; /* 1 coluna */
     grid-template-rows: auto auto; /* 2 linhas */
     gap: -1px 0px;
     padding: 10px;
 }.item:nth-child(1){
-    grid-row: 2/3;
+    grid-row: 1/2;
     justify-content: center; /* alinhamento horizontal em conteiners "grid"*/
     align-content: center;   /* alinhamento vertical em conteiners "grid"*/
 }.item:nth-child(2){
+    grid-row: 2/3;
+    align-content: center;   /* alinhamento vertical em conteiners "grid"*/
+}.item:nth-child(3){
     grid-row: 3/4;
     align-content: center;   /* alinhamento vertical em conteiners "grid"*/
 }
@@ -57,4 +62,30 @@
     justify-self: center; /* Alinhamento horizontal em conteiners "grid"*/
     align-self: center;   /* Alinhamento vertical em conteiners "grid"*/
     cursor: pointer; /* Muda o cursor ao passar por cima do botão */
+}#btn-adicionar-contato:hover {
+  filter: brightness(0.9); /* efeito ao passar o mouse */
+}
+
+#btn-exportar {
+    width: 50px;              /* largura fixa */
+    height: 50px;             /* altura fixa */
+    background-image: url("../../../img/Export-blue.png");
+    background-size: cover;   /* cobre todo o botão */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    align-self: center;  /* Alinhamento vertical em conteiners "grid"*/
+    justify-self: center; /* Alinhamento horizontal em conteiners "grid"*/
+    cursor: pointer;
+}
+#btn-exportar:hover {
+    filter: brightness(0.9); /* efeito ao passar o mouse */
+}
+#lbl-exportar-contatos {
+    font-family: var(--font-base-bold);
+    font-size: 15pt;
+    font-weight: 600;
+    text-align: center;
+    color: var(--cor-cinza);
 }

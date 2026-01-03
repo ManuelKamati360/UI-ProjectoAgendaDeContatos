@@ -1,6 +1,6 @@
 // modalDialogoDeletar.js
 
-// 🔹 1. Injeta o HTML do modal no DOM
+//  1. Injeta o HTML do modal no DOM
 function criarModalDeletar() {
   const modalHTML = `
     <dialog class="modal" id="id-modal-deletar">
@@ -55,7 +55,7 @@ function criarModalDeletar() {
   document.body.insertAdjacentHTML("beforeend", modalHTML);
 }
 
-// 🔹 2. Funções auxiliares para formatar data e telefone
+//  2. Funções auxiliares para formatar data e telefone
 function formatarDataParaInput(dataString) {
   const meses = { jan:"01", feb:"02", mar:"03", apr:"04", may:"05", jun:"06",
                   jul:"07", aug:"08", sep:"09", oct:"10", nov:"11", dec:"12" };

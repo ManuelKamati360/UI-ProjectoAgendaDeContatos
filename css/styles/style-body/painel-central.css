@@ -97,28 +97,23 @@
     cursor: pointer;
 }
 
-/* Spinner de carregamento dos contatos */
-#loading-spinner {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999;
+#msg-carregando{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-base-bold);
+    font-size: 18px;
+    color: var(--cor-azul-escuro);
 }
-
-.spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #1C507D;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+#msg-contato-inexistente{
+    position: absolute;
+      transform: translate(20%, 80%);
+    font-family: var(--font-base-bold);
+    font-size: 60px;
+    color: var(--cor-vermelho-escuro);
+    grid-column: 1 / -1; /* Ocupa todas as colunas do grid */
+    text-align: center;
 }
 
 

@@ -1,9 +1,9 @@
 // consumo-api.js
 
-// 🔹 Variável global para armazenar contatos
+//  Variável global para armazenar contatos
 let contatos = [];
 
-// 🔹 Função GET → carregar todos os contatos
+//  Função GET → carregar todos os contatos
 function carregarContatos() {
   return fetch("http://localhost:8080/AgendaDeContactos/api/contatos")
     .then(response => {
@@ -16,7 +16,7 @@ function carregarContatos() {
     });
 }
 
-// 🔹 Função PUT → atualizar contato
+//  Função PUT → atualizar contato
 function atualizarContato(id, dados) {
   return fetch(`http://localhost:8080/AgendaDeContactos/api/contatos/${id}`, {
     method: "PUT",
@@ -28,7 +28,7 @@ function atualizarContato(id, dados) {
   });
 }
 
-// 🔹 Função POST → adicionar contato
+//  Função POST → adicionar contato
 function adicionarContato(dados) {
   return fetch("http://localhost:8080/AgendaDeContactos/api/contatos", {
     method: "POST",
@@ -40,7 +40,7 @@ function adicionarContato(dados) {
   });
 }
 
-// 🔹 Função DELETE → remover contato
+//  Função DELETE → remover contato
 function deletarContato(id) {
   return fetch(`http://localhost:8080/AgendaDeContactos/api/contatos/${id}`, {
     method: "DELETE"
@@ -50,7 +50,7 @@ function deletarContato(id) {
   });
 }
 
-// 🔹 Exporta funções para uso nos modais
+//  Exporta funções para uso nos modais
 window.api = {
   carregarContatos,
   atualizarContato,
