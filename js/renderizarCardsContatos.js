@@ -64,7 +64,7 @@ function buscarContatos(termo) {
     })
     .catch(error => {
       console.error("Erro ao buscar contatos:", error);
-      container.innerHTML = "<p style='color:red;' id='msg-contato-inexistente'>Contato(s) não encontrado(s)!<br>Tente novamente...";
+      container.innerHTML = "<p class='msg-contato-inexistente'>Contato(s) não encontrado(s)!<br>Tente novamente...";
     });
 }
 
@@ -77,7 +77,7 @@ function exibirCards() {
   const contatos = Array.isArray(listaContatos) ? listaContatos : [listaContatos];
 
   if (!contatos || contatos.length === 0) {
-    container.innerHTML = "<p>Nenhum contato encontrado.</p>";
+    container.innerHTML = "<p class='msg-contato-inexistente'>Nenhum contato encontrado!</p>";
     return;
   }
 

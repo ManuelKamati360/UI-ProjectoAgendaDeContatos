@@ -1,4 +1,4 @@
-# PROJECTO - AGENDA DE CONTATOS
+# PROJECTO - AGENDA DE CONTATOS (FRONTEND)
 Este projeceto, teve como principal objectivo, introduzir os conceitos de desenvolvimento de um sistema/webapp em Java Web ou JEE. Bem como, a implementação de uma API RESTfull em Java. Simulando um "__SPA__" com Java...
 
 Pois, ele permitiu conhecer e aplicar diversas técnicas e tecnologias envolvidas no processo de desenvolvimento web e não só, como:  
@@ -58,7 +58,7 @@ Foi construida, usando a linguagem Java sob o padrão __API-RESTfull__. Usando e
 - "__/diagnostico__": usado para verificar o estado de funcionamentos dos serviços do sistema, via browser...
 
 ##### SGBD MySQL  
-Foi usado para a persistencia dos dados do sistema, criando-se um banco com uma única entidade que dela são extraídas as métricas e aplicado o CRUD dos do sistema. Apartir de query's SQL, Views e Stored Procedures...
+Foi usado para a persistencia dos dados do sistema, criando-se um banco com uma única entidade que dela são extraídas as métricas e aplicado o CRUD dos do sistema. Apartir de query's SQL, Views e Stored Procedures. Encontrados no directório ([AgendaDeContactos/docs/db/script"](https://github.com/ManuelKamati360/AgendaDeContactos/tree/main/docs/db/script))"...
 
 
 ## APACHE TOMCAT SERVER
@@ -69,11 +69,11 @@ Foi usado para a implantação local durante o procecesso de desenvolvimento do 
 
 #### Diagramas do sistema (DrawIO)
 __Software de System Desing__
-Foi usado para a prototipagem de baixa fidelidade, ou seja, da modelagem e prototipgem do backend do sistema. Específicamente, para a criação do diagrama __UML__ do projecto, diagrama de __fluxo da API__ e os __Use-Cases's__ (diagramas de caso de uso). Encontrados no directório ([/AgendaDeContactos/docs/diagramas"](https://github.com/ManuelKamati360/AgendaDeContactos/tree/main/docs/diagramas))"...
+Foi usado para a prototipagem de baixa fidelidade, ou seja, da modelagem e prototipgem do backend do sistema. Específicamente, para a criação do diagrama __UML__ do projecto, diagrama de __fluxo da API__ e os __Use-Cases's__ (diagramas de caso de uso). Encontrados no directório ([AgendaDeContactos/docs/diagramas"](https://github.com/ManuelKamati360/AgendaDeContactos/tree/main/docs/diagramas))"...
 
 #### Prototipagem (Adobe XD CC 2021)
 __Software de UI/UX__
-Foi usado para a criação de um protótipo de alta fidelidade do sistema que, serviu de base para a implementação final do frontend do sistema... Encontrados no directório ([/AgendaDeContactos/docs/ui"](https://github.com/ManuelKamati360/AgendaDeContactos/tree/main/docs/ui))"...
+Foi usado para a criação de um protótipo de alta fidelidade do sistema que, serviu de base para a implementação final do frontend do sistema...
 
 #### Teste da API (Postman)
 __Sistema de testes de APIs__

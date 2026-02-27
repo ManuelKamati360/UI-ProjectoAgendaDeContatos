@@ -106,14 +106,13 @@
     font-size: 18px;
     color: var(--cor-azul-escuro);
 }
-#msg-contato-inexistente{
+.msg-contato-inexistente{
     position: absolute;
-      transform: translate(20%, 80%);
+    transform: translate(20%, 80%);
     font-family: var(--font-base-bold);
     font-size: 60px;
-    color: var(--cor-vermelho-escuro);
+    color: var(--cor-vermelho-claro);
     grid-column: 1 / -1; /* Ocupa todas as colunas do grid */
     text-align: center;
 }
-
 

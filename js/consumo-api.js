@@ -21,7 +21,7 @@ function atualizarContato(id, dados) {
   return fetch(`http://localhost:8080/AgendaDeContactos/api/contatos/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(dados)
+    body: JSON.stringify(dados, id)
   }).then(response => {
     if (!response.ok) throw new Error("Erro ao atualizar contato.");
     return response.json();
